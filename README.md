@@ -1,1 +1,1 @@
-docker-tedb
+executar   ***docker-compose up***
