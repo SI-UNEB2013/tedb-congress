@@ -1,0 +1,51 @@
+# Docker-Compose configuration file.
+
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  tedb-mysql-data:
+    driver: local
+
+services:
+
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: tedb-api-mysql
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=starter
+      - MYSQL_DATABASE=starter
+      - MYSQL_USER=starter
+      - MYSQL_PASSWORD=starter
+
+  # PHP (with Caddy) - Web Application (API)
+  web:
+    image: ambientum/php:7.0-caddy
+    container_name: tedb-api-web
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8000:8080"
+    links:
+      - mysql
+  phpmyadmin:
+    build: phpmyadmin
+    environment:
+        PMA_ARBITRARY: 1
+        MYSQL_USER: starter
+        MYSQL_PASSWORD: starter
+        MYSQL_ROOT_PASSWORD: root
+    ports:
+        - "8081:80"
+    links:
+        # for mysql container
+        - mysql:db
+   
+
