@@ -21,7 +21,7 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=starter
-      - MYSQL_DATABASE=starter
+      - MYSQL_DATABASE=Congress
       - MYSQL_USER=starter
       - MYSQL_PASSWORD=starter
 

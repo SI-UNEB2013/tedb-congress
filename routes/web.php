@@ -15,3 +15,6 @@ $app->get('/', function () use ($app) {
 
     return 'TUDO OK';
 });
+
+$app->get('/congresses', 'CongressesController@index');
+$app->get('/participants', 'ParticipantsController@index');
