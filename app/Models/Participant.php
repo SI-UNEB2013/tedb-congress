@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Participant extends Model
 {
     public $table = 'Participant';
+    public $timestamps = false;
 }

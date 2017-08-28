@@ -11,9 +11,14 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Participant::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->email,
+        'mail' => $faker->email,
+        'adress' => $faker->address,
+        'phone' => $faker->phoneNumber,
+        'birthdate' => $faker->date($format = 'Y-m-d', $max = '-16 years'),
+        'brandCard' => $faker->creditCardType,
+        'workplace' => $faker->company,
     ];
 });
